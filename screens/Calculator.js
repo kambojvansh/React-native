@@ -5,6 +5,15 @@ import calculator, { initialState } from "../screens/CalculatorDemo/calculator";
 export default class Calculator extends Component {
 
     state = initialState;
+    valueCal = null;
+
+    calculate = () => {
+        // this.valueCal = `${parseFloat(this.state.curruntValueShow)}`
+        if (this.valueCal)
+            alert("run on null" + this.valueCal)
+
+
+    }
 
     handleTap = (type, value) => {
         this.setState(state => calculator(type, value, state));
@@ -23,18 +32,18 @@ export default class Calculator extends Component {
                     borderColor: 'white',
                     alignItems: 'flex-end'
                 }}>
-
-
-                    <Text style={{ fontSize: 40, marginRight: 10, color: '#00b300' }}>
-                        {parseFloat(this.state.currentValue).toLocaleString()}
-                    </Text>
                     <Text style={{
-                        fontSize: 30, marginRight: 10, color: '#bcbcbc',
-                        marginTop: 90
+                        fontSize: 30, marginRight: 15, marginTop: 10, color: '#bcbcbc',
 
                     }}>
                         {(this.state.curruntValueShow).toLocaleString()}
                     </Text>
+
+
+                    <Text style={{ fontSize: 40, marginRight: 10, color: '#00b300', marginTop: 90 }}>
+                        {parseFloat(this.state.currentValue).toLocaleString()}
+                    </Text>
+
 
                 </View>
                 <View style={{ flex: 1.7, backgroundColor: 'white', justifyContent: "center" }}>
@@ -44,7 +53,9 @@ export default class Calculator extends Component {
                         >
                             <Text style={[styles.text, { color: 'red' }]}>C</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.touchtext} >
+                        <TouchableOpacity style={styles.touchtext}
+                            onPress={() => this.calculate()}
+                        >
                             <Text style={styles.greenText}>( )</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.touchtext}
@@ -53,7 +64,11 @@ export default class Calculator extends Component {
                             <Text style={styles.greenText}>%</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.touchtext}
-                            onPress={() => this.handleTap("operator", "/")}
+                            onPress={() => {
+                                if (this.state.operator)
+                                    return;
+                                this.handleTap("operator", "/")
+                            }}
                         >
                             <Text style={styles.greenText}>/</Text>
                         </TouchableOpacity>
@@ -76,7 +91,11 @@ export default class Calculator extends Component {
                             <Text style={styles.text}>9</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.touchtext}
-                            onPress={() => this.handleTap("operator", "*")}
+                            onPress={() => {
+                                if (this.state.operator)
+                                    return;
+                                this.handleTap("operator", "*")
+                            }}
                         >
                             <Text style={styles.greenText}>X</Text>
                         </TouchableOpacity>
@@ -98,7 +117,11 @@ export default class Calculator extends Component {
                             <Text style={styles.text}>6</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.touchtext}
-                            onPress={() => this.handleTap("operator", "-")}
+                            onPress={() => {
+                                if (this.state.operator)
+                                    return;
+                                this.handleTap("operator", "-")
+                            }}
                         >
                             <Text style={[styles.greenText, { fontSize: 60 }]}>-</Text>
                         </TouchableOpacity>
@@ -121,7 +144,11 @@ export default class Calculator extends Component {
                             <Text style={styles.text}>3</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.touchtext}
-                            onPress={() => this.handleTap("operator", "+")}
+                            onPress={() => {
+                                if (this.state.operator)
+                                    return;
+                                this.handleTap("operator", "+")
+                            }}
                         >
                             <Text style={styles.greenText}>+</Text>
                         </TouchableOpacity>
@@ -139,7 +166,12 @@ export default class Calculator extends Component {
                             <Text style={styles.text}>0</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.touchtext}
-                            onPress={() => this.handleTap("number", ".")}
+                            onPress={() => {
+                                if (this.state.dot)
+                                    return;
+                                this.handleTap("number", ".")
+                                this.setState({ dot: "." })
+                            }}
                         >
                             <Text style={styles.text}>.</Text>
                         </TouchableOpacity>

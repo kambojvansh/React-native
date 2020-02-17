@@ -4,7 +4,8 @@ import HomeScreen from './screens/HomeScreen';
 import Second from './screens/Second';
 import React, { Component } from 'react';
 import Display from './screens/Display';
-import Calculator from './screens/Calculator'
+import Calculator from './screens/Calculator';
+import Color from './screens/Color';
 
 
 const MainNavigator = createStackNavigator({
@@ -12,6 +13,7 @@ const MainNavigator = createStackNavigator({
     Second: Second,
     Display: Display,
     Calculator: Calculator,
+    Color: Color,
 });
 
 class App extends Component {

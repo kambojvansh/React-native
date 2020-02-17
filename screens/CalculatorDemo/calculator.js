@@ -1,8 +1,9 @@
 export const initialState = {
-    currentValue: "0",
+    currentValue: 0,
     operator: null,
     previousValue: null,
-    curruntValueShow: " "
+    curruntValueShow: " ",
+    dot: null
 };
 
 export const handleNumber = (value, state) => {
@@ -25,8 +26,10 @@ export const handleEqual = state => {
     const current = parseFloat(currentValue);
     const previous = parseFloat(previousValue);
     const resetState = {
+
         operator: null,
-        previousValue: null,
+        // previousValue: null,
+        dot: null
     };
 
     if (operator === "/") {
@@ -47,6 +50,7 @@ export const handleEqual = state => {
     if (operator === "+") {
         return {
             currentValue: previous + current,
+            // ...handleEqual(state),
             ...resetState
         };
     }
