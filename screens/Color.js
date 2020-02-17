@@ -19,8 +19,15 @@ export default class Color extends Component {
     setColor = () => {
         if ((this.red <= 255 && this.red >= 0) && (this.green <= 255) && (this.blue <= 255))
             this.setState({ R: parseInt(this.red), G: parseInt(this.green), B: parseInt(this.blue) })
-        else
-            alert("value not allow")
+        // else
+        //     alert("value not allow")
+
+        if (this.red > 255)
+            alert("Value of Red(R) not Allow")
+        else if (this.green > 255)
+            alert("Value of Green(G) not Allow")
+        else if (this.blue > 255)
+            alert("Value of Blue(B) not Allow")
 
     }
     render() {
@@ -31,10 +38,10 @@ export default class Color extends Component {
                 </View>
 
                 <View style={styles.viewtext}>
-                    <View style={{ flexDirection: "row", justifyContent: "center" }}>
-                        <Text style={styles.text}>R</Text>
-                        <Text style={styles.text}>G</Text>
-                        <Text style={styles.text}>B</Text>
+                    <View style={{ flexDirection: "row", marginTop: 40, justifyContent: "center" }}>
+                        <Text style={[styles.text, { color: `rgb(${this.state.R},0,0)` }]}>RED</Text>
+                        <Text style={[styles.text, { color: `rgb(0,${this.state.G},0)` }]}>GREEN</Text>
+                        <Text style={[styles.text, { color: `rgb(0,0,${this.state.B})` }]}>BLUE</Text>
                     </View>
                     <View style={{ flexDirection: "row", justifyContent: "center" }}>
                         <TextInput style={styles.textinput}
@@ -71,9 +78,9 @@ export default class Color extends Component {
                         <View>
                             <TouchableOpacity
                                 onPress={() => {
-                                    if (this.state.R >= 255)
-                                        return
-                                    this.setState({ R: this.state.R + 1 })
+                                    if (this.state.R >= 255 || this.red >= 255)
+                                        return;
+                                    this.setState({ R: this.state.R + 15 })
                                 }}
                             >
                                 <Text style={styles.btn}>+</Text>
@@ -82,8 +89,8 @@ export default class Color extends Component {
                             <TouchableOpacity
                                 onPress={() => {
                                     if (this.state.R <= 0)
-                                        return
-                                    this.setState({ R: this.state.R - 1 })
+                                        return;
+                                    this.setState({ R: this.state.R - 15 })
                                 }}
                             >
                                 <Text style={styles.btn}>-</Text>
@@ -93,8 +100,8 @@ export default class Color extends Component {
                             <TouchableOpacity
                                 onPress={() => {
                                     if (this.state.G >= 255)
-                                        return
-                                    this.setState({ G: this.state.G + 1 })
+                                        return;
+                                    this.setState({ G: this.state.G + 15 })
                                 }}
                             >
                                 <Text style={styles.btn}>+</Text>
@@ -103,8 +110,8 @@ export default class Color extends Component {
                             <TouchableOpacity
                                 onPress={() => {
                                     if (this.state.G <= 0)
-                                        return
-                                    this.setState({ G: this.state.G - 1 })
+                                        return;
+                                    this.setState({ G: this.state.G - 15 })
                                 }}
                             >
                                 <Text style={styles.btn}>-</Text>
@@ -114,8 +121,8 @@ export default class Color extends Component {
                             <TouchableOpacity
                                 onPress={() => {
                                     if (this.state.B >= 255)
-                                        return
-                                    this.setState({ B: this.state.B + 1 })
+                                        return;
+                                    this.setState({ B: this.state.B + 15 })
                                 }}
                             >
                                 <Text style={styles.btn}>+</Text>
@@ -124,8 +131,8 @@ export default class Color extends Component {
                             <TouchableOpacity
                                 onPress={() => {
                                     if (this.state.B <= 0)
-                                        return
-                                    this.setState({ B: this.state.B - 1 })
+                                        return;
+                                    this.setState({ B: this.state.B - 15 })
                                 }}
                             >
                                 <Text style={styles.btn}>-</Text>
@@ -146,15 +153,17 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     color_container: {
-        borderWidth: 2,
-        borderBottomColor: 'black',
         marginHorizontal: 50,
         height: 250,
         marginVertical: 20,
+        borderRadius: 20
     },
     viewtext: {
         backgroundColor: 'skyblue',
-        flex: 1
+        flex: 1,
+        borderTopLeftRadius: 160,
+        borderTopRightRadius: 160,
+        // borderTopStartRadius: 450,
     },
     text: {
         fontSize: 30,
@@ -164,7 +173,7 @@ const styles = StyleSheet.create({
     textinput: {
         fontSize: 30,
         fontWeight: 'bold',
-        marginHorizontal: 15,
+        marginHorizontal: 50,
         color: 'white',
         borderWidth: 1,
     },

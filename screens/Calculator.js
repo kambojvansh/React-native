@@ -5,7 +5,13 @@ import calculator, { initialState } from "../screens/CalculatorDemo/calculator";
 export default class Calculator extends Component {
 
     state = initialState;
+    states = {
+        result: 0
+    }
     valueCal = null;
+    arrow = "<-"
+    // vare = eval(this.state.curruntValueShow)
+    // setState({result:this.vare})
 
     calculate = () => {
         // this.valueCal = `${parseFloat(this.state.curruntValueShow)}`
@@ -17,8 +23,11 @@ export default class Calculator extends Component {
 
     handleTap = (type, value) => {
         this.setState(state => calculator(type, value, state));
+        // this.setState({ result:eval(this.state.curruntValueShow) })
     };
+
     render() {
+
 
         return (
             <View style={styles.main_container}>
@@ -42,6 +51,8 @@ export default class Calculator extends Component {
 
                     <Text style={{ fontSize: 40, marginRight: 10, color: '#00b300', marginTop: 90 }}>
                         {parseFloat(this.state.currentValue).toLocaleString()}
+                        {/* {eval(this.state.curruntValueShow)} */}
+                        {this.state.result}
                     </Text>
 
 
@@ -56,7 +67,7 @@ export default class Calculator extends Component {
                         <TouchableOpacity style={styles.touchtext}
                             onPress={() => this.calculate()}
                         >
-                            <Text style={styles.greenText}>( )</Text>
+                            <Text style={styles.greenText}>{this.arrow}</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.touchtext}
                             onPress={() => this.handleTap("percentage")}
@@ -107,10 +118,10 @@ export default class Calculator extends Component {
                             <Text style={styles.text}>4</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.touchtext}
-                            onPress={() => this.handleTap("number", 5)}
-                        >
+                            onPress={() => this.handleTap("number", 5)}>
                             <Text style={styles.text}>5</Text>
                         </TouchableOpacity>
+
                         <TouchableOpacity style={styles.touchtext}
                             onPress={() => this.handleTap("number", 6)}
                         >
