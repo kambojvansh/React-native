@@ -8,6 +8,7 @@ import Calculator from './screens/Calculator';
 import Color from './screens/Color';
 import Cal from './screens/Cal_component'
 import Cal_component from './screens/Cal_component';
+import Demo from './screens/Demo'
 
 
 const MainNavigator = createStackNavigator({
@@ -17,6 +18,7 @@ const MainNavigator = createStackNavigator({
     Calculator: Calculator,
     Color: Color,
     Cal: Cal_component,
+    Demo: Demo,
 });
 
 class App extends Component {

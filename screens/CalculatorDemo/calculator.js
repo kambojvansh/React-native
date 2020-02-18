@@ -6,34 +6,22 @@ export const initialState = {
     dot: null,
 };
 
-// export const handleNumber2 = (value, state) => {
-//     return {
-//         currentValue: `${value}`,
-//         curruntValueShow: `${state.curruntValueShow}${value}`
-//     };
-// }
+
 
 export const handleNumber = (value, state) => {
-    // alert(eval(this.state.curruntValueShow))
+
     if (state.currentValue === "0") {
-        // if (state.operator) {
-        //     handleNumber2(value, state)
-        //     handleEqual(state)
-        // }
-        // handleNumber2(value, state)
+
         return {
             currentValue: `${value}`,
             curruntValueShow: `${state.curruntValueShow}${value}`,
+            // operator: null
         };
     }
 
     return {
         currentValue: `${state.currentValue}${value}`,
         curruntValueShow: `${state.curruntValueShow}${value}`,
-        // result: `${eval(state.curruntValueShow.toLocaleString())}`,
-        // result: `${eval("2+2+2+2")}`,
-
-        // this.handleEqual(state)
 
     };
 

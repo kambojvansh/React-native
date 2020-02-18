@@ -1,15 +1,71 @@
 import React, { Component } from 'react'
 import { Text, StyleSheet, View, TouchableOpacity } from 'react-native'
-import calculator, { initialState } from "../screens/CalculatorDemo/calculator";
-
-
 export default class Demo extends Component {
 
-    state = initialState;
+    state = {
+        currentValue: "",
+        previousValue: null,
+        operator: null,
+        result: "o",
+        dot: null
 
+    }
+    val = 0
     handleTap = (type, value) => {
-        this.setState(state => calculator(type, value, state));
+        this.setState(state => this.calculat(type, value, state));
     };
+    calculat = (type, value, state) => {
+
+        switch (type) {
+            case "clear":
+                return {
+                    currentValue: "",
+                    result: "o",
+                    dot: null,
+                    operator: null
+                }
+            case "equal":
+                if (this.state.result != "o")
+                    return {
+                        currentValue: state.result,
+                        result: "o"
+
+                    }
+                else if (state.operator) {
+                    return
+                }
+                this.val = eval(this.state.currentValue)
+                this.setState({ result: this.val })
+                return
+            case "number":
+                if (this.state.result != "o")
+                    return {
+                        currentValue: value,
+                        result: "o"
+
+                    }
+
+                return {
+                    currentValue: state.currentValue + value,
+                    operator: null,
+
+                }
+            case "operator":
+                if (state.currentValue == "")
+                    return;
+                this.setState({ currentValue: this.state.currentValue + value })
+                return {
+                    operator: value,
+                    dot: null
+                }
+            case "percentage":
+                return {
+                    result: `${parseFloat(state.currentValue) * 0.01}`,
+                };
+
+        }
+    }
+
 
 
     render() {
@@ -25,13 +81,16 @@ export default class Demo extends Component {
                         fontSize: 30, marginRight: 15, marginTop: 10, color: '#bcbcbc',
 
                     }}>
-                        {(this.state.curruntValueShow).toLocaleString()}
+                        {/* {(this.state.curruntValueShow).toLocaleString()} */}
+
+                        {this.state.currentValue}
                     </Text>
 
                     {/* Second Text Box */}
 
                     <Text style={{ fontSize: 40, marginRight: 10, color: '#00b300', marginTop: 90 }}>
-                        {parseFloat(this.state.currentValue).toLocaleString()}
+                        {/* {parseFloat(this.state.currentValue).toLocaleString()} */}
+                        {this.state.result}
 
                     </Text>
                 </View>
@@ -52,7 +111,7 @@ export default class Demo extends Component {
                             title={"<-"}
                             style={{ color: "green" }}
                             onClick={() => {
-                                this.handleTap("percentage")
+                                this.handleTap("back")
                             }} />
 
                         <Buttons
@@ -78,7 +137,7 @@ export default class Demo extends Component {
                         <Buttons
                             title={"7"}
                             onClick={() => {
-                                this.handleTap("number", 7)
+                                this.handleTap("number", "7")
                             }} />
 
                         <Buttons
@@ -170,7 +229,7 @@ export default class Demo extends Component {
                         <Buttons
                             title={"+/-"}
                             onClick={() => {
-                                this.handleTap("posneg")
+                                this.handleTap("reverse")
                             }} />
 
                         <Buttons
@@ -186,6 +245,7 @@ export default class Demo extends Component {
                                     return;
                                 this.handleTap("number", ".")
                                 this.setState({ dot: "." })
+
                             }} />
 
                         <Buttons
