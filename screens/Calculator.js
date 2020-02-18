@@ -1,14 +1,11 @@
-import React, { Component, useState } from 'react'
-import { Text, StyleSheet, View, TouchableOpacity, TextInput, Keyboard } from 'react-native'
+import React, { Component } from 'react'
+import { Text, StyleSheet, View, TouchableOpacity } from 'react-native'
 import calculator, { initialState } from "../screens/CalculatorDemo/calculator";
 
 export default class Calculator extends Component {
 
     state = initialState;
-    states = {
-        result: 0
-    }
-    valueCal = null;
+    // valueCal = null;
     arrow = "<-"
     // vare = eval(this.state.curruntValueShow)
     // setState({result:this.vare})
@@ -52,7 +49,7 @@ export default class Calculator extends Component {
                     <Text style={{ fontSize: 40, marginRight: 10, color: '#00b300', marginTop: 90 }}>
                         {parseFloat(this.state.currentValue).toLocaleString()}
                         {/* {eval(this.state.curruntValueShow)} */}
-                        {this.state.result}
+                        {/* {this.state.result} */}
                     </Text>
 
 
