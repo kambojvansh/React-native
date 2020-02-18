@@ -6,7 +6,7 @@ export default class Demo extends Component {
         currentValue: "",
         previousValue: null,
         operator: null,
-        result: "o",
+        result: "0",
         dot: null
 
     }
@@ -20,30 +20,30 @@ export default class Demo extends Component {
             case "clear":
                 return {
                     currentValue: "",
-                    result: "o",
+                    result: "0",
                     dot: null,
                     operator: null
                 }
             case "equal":
-                if (this.state.result != "o")
-                    return {
-                        currentValue: state.result,
-                        result: "o"
+                // if (this.state.result != "o")
+                //     return {
+                //         currentValue: state.result,
+                //         result: "o"
 
-                    }
-                else if (state.operator) {
+                //     }
+                if (state.operator) {
                     return
                 }
                 this.val = eval(this.state.currentValue)
                 this.setState({ result: this.val })
                 return
             case "number":
-                if (this.state.result != "o")
-                    return {
-                        currentValue: value,
-                        result: "o"
+                // if (this.state.result != "o")
+                //     return {
+                //         currentValue: value,
+                //         result: "o"
 
-                    }
+                //     }
 
                 return {
                     currentValue: state.currentValue + value,
