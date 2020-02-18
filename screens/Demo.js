@@ -25,10 +25,10 @@ export default class Demo extends Component {
                     operator: null
                 }
             case "equal":
-                // if (this.state.result != "o")
+                // if (this.state.result != "0")
                 //     return {
                 //         currentValue: state.result,
-                //         result: "o"
+                //         result: "0"
 
                 //     }
                 if (state.operator) {
