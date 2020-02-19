@@ -11,6 +11,7 @@ export default class Demo extends Component {
 
     }
     val = 0
+    remove = ""
     handleTap = (type, value) => {
         this.setState(state => this.calculat(type, value, state));
     };
@@ -62,6 +63,11 @@ export default class Demo extends Component {
                 return {
                     result: `${parseFloat(state.currentValue) * 0.01}`,
                 };
+            case "back":
+                this.remove = state.currentValue.substring(0, state.currentValue.length - 1);
+                return {
+                    currentValue: this.remove
+                }
 
         }
     }
